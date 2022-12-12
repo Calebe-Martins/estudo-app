@@ -1,34 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+import React from 'react'
 
-## Getting Started
+function MyMap() {
+  // Coordenadas do ponto central
+  const center = { lat: 51.5074, lng: 0.1278 }
 
-First, run the development server:
+  // Raio em metros
+  const radius = 500
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+  // Inicializa o mapa quando a página for carregada
+  React.useEffect(() => {
+    // Cria o mapa
+    const map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 12,
+      center: center,
+    })
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    // Desenha o raio no mapa
+    new google.maps.Circle({
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#FF0000',
+      fillOpacity: 0.35,
+      map: map,
+      center: center,
+      radius: radius,
+    })
+  }, [])
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+  return <div id="map" style={{ width: '500px', height: '500px' }} />
+}
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+export default MyMap
