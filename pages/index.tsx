@@ -18,7 +18,7 @@ export default function Home() {
             <h1 className={styles.title}>
               Welcome to Next.js!
             </h1>
-            <Teste/>
+            {/* <Teste/> */}
           </header>
         </main>
       </div>
